@@ -1,4 +1,4 @@
-package com.example.treeleaf;
+package com.test.treeleaf;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
