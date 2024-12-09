@@ -1,9 +1,11 @@
 package com.test.treeleaf.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.test.treeleaf.repository.ThumbnailImageRepository;
 
+@Service
 public class ThumbnailImageService {
     private final ThumbnailImageRepository thumbnailImageRepository;
 

@@ -2,6 +2,8 @@ package com.test.treeleaf.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.test.treeleaf.model.enums.Role;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -34,11 +36,14 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "createdByUser")
+    @JsonManagedReference
     private List<Blog> blogs;
 
     @OneToMany(mappedBy = "modifiedByUser")
+    @JsonManagedReference
     private List<Blog> modifiedBlogs;
 
     @OneToMany(mappedBy = "user")
+    @JsonManagedReference
     private List<Comment> comments;
 }

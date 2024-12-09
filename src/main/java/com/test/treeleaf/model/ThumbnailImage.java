@@ -1,5 +1,7 @@
 package com.test.treeleaf.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,5 +25,6 @@ public class ThumbnailImage {
     private String name;
 
     @ManyToOne
+    @JsonBackReference
     private Blog blog;
 }
