@@ -18,17 +18,18 @@ import com.test.treeleaf.repository.ThumbnailImageRepository;
 public class BlogService {
     private final BlogRepository blogRepository;
 
-    private final UserService userService;
+    private final UserInfoService userInfoService;
 
     private final FileStorageService fileStorageService;
 
     private final ThumbnailImageRepository thumbnailImageRepository;
 
     @Autowired
-    public BlogService(BlogRepository blogRepository, UserService userService, FileStorageService fileStorageService,
+    public BlogService(BlogRepository blogRepository, UserInfoService userService,
+            FileStorageService fileStorageService,
             ThumbnailImageRepository thumbnailImageRepository) {
         this.blogRepository = blogRepository;
-        this.userService = userService;
+        this.userInfoService = userService;
         this.fileStorageService = fileStorageService;
         this.thumbnailImageRepository = thumbnailImageRepository;
     }
@@ -73,7 +74,7 @@ public class BlogService {
         Blog blog = new Blog();
         blog.setTitle(blogRequest.getTitle());
         blog.setContent(blogRequest.getContent());
-        blog.setCreatedByUser(userService.getUserById(blogRequest.getCreatedByUserId()));
+        blog.setCreatedByUser(userInfoService.getUserById(blogRequest.getCreatedByUserId()));
 
         List<ThumbnailImage> thumbnailImageList = new ArrayList<>();
         for (MultipartFile file : blogRequest.getThumbnailImages()) {
@@ -94,22 +95,21 @@ public class BlogService {
         }
         blog.setTitle(blogRequest.getTitle());
         blog.setContent(blogRequest.getContent());
-        blog.setModifiedByUser(userService.getUserById(blogRequest.getModifiedByUserId()));
+        blog.setModifiedByUser(userInfoService.getUserById(blogRequest.getModifiedByUserId()));
 
         // Delete previous thumbnails
         thumbnailImageRepository.deleteByBlogId(blog.getId());
 
         fileStorageService.deleteFiles(blog.getThumbnailImages());
 
-        List<ThumbnailImage> thumbnailImageList = new ArrayList<>();
+        blog.getThumbnailImages().clear();
         for (MultipartFile file : blogRequest.getThumbnailImages()) {
             String fileName = fileStorageService.storeFile(file);
             ThumbnailImage thumbnailImage = new ThumbnailImage();
             thumbnailImage.setName(fileName);
             thumbnailImage.setBlog(blog);
-            thumbnailImageList.add(thumbnailImage);
+            blog.getThumbnailImages().add(thumbnailImage);
         }
-        blog.setThumbnailImages(thumbnailImageList);
         return BlogDTO.from(blogRepository.save(blog));
     }
 }

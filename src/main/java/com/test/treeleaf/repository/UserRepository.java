@@ -1,7 +1,12 @@
 package com.test.treeleaf.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import com.test.treeleaf.model.User;
+import java.util.Optional;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+import org.springframework.data.jpa.repository.JpaRepository;
+import com.test.treeleaf.model.UserInfo;
+
+public interface UserRepository extends JpaRepository<UserInfo, Long> {
+    Optional<UserInfo> findByUsername(String username);
+
+    UserInfo findAllByUsername(String username);
 }

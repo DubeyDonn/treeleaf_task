@@ -33,11 +33,11 @@ public class Blog {
 
     @ManyToOne
     @JsonBackReference(value = "user-blog")
-    private User createdByUser;
+    private UserInfo createdByUser;
 
     @ManyToOne
     @JsonBackReference(value = "user-modified-blog")
-    private User modifiedByUser;
+    private UserInfo modifiedByUser;
 
     @OneToMany(mappedBy = "blog", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference(value = "blog-comment")
