@@ -32,18 +32,18 @@ public class Blog {
     private String content;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference(value = "user-blog")
     private User createdByUser;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference(value = "user-modified-blog")
     private User modifiedByUser;
 
-    @OneToMany(mappedBy = "blog", cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @OneToMany(mappedBy = "blog")
+    @JsonManagedReference(value = "blog-comment")
     private List<Comment> comments;
 
     @OneToMany(mappedBy = "blog", cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @JsonManagedReference(value = "thumbnail-image-blog")
     private List<ThumbnailImage> thumbnailImages;
 }

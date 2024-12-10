@@ -25,10 +25,10 @@ public class Comment {
     private String content;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference(value = "user-comment")
     private User user;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference(value = "blog-comment")
     private Blog blog;
 }
