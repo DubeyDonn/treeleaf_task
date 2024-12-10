@@ -25,6 +25,6 @@ public class ThumbnailImage {
     private String name;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference(value = "thumbnail-image-blog")
     private Blog blog;
 }

@@ -47,6 +47,11 @@ public class BlogService {
         return blogRepository.findById(id).orElse(null);
     }
 
+    public List<BlogDTO> getBlogDTOsByUserId(Long userId) {
+        List<Blog> blogs = blogRepository.findByCreatedByUserId(userId);
+        return BlogDTO.from(blogs);
+    }
+
     public List<Blog> getBlogsByUserId(Long userId) {
         return blogRepository.findByCreatedByUserId(userId);
     }
@@ -56,6 +61,11 @@ public class BlogService {
     }
 
     public void deleteBlog(Long id) {
+        Blog blog = blogRepository.findById(id).orElse(null);
+        if (blog == null) {
+            return;
+        }
+        fileStorageService.deleteFiles(blog.getThumbnailImages());
         blogRepository.deleteById(id);
     }
 
@@ -88,6 +98,8 @@ public class BlogService {
 
         // Delete previous thumbnails
         thumbnailImageRepository.deleteByBlogId(blog.getId());
+
+        fileStorageService.deleteFiles(blog.getThumbnailImages());
 
         List<ThumbnailImage> thumbnailImageList = new ArrayList<>();
         for (MultipartFile file : blogRequest.getThumbnailImages()) {

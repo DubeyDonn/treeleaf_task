@@ -39,11 +39,11 @@ public class Blog {
     @JsonBackReference(value = "user-modified-blog")
     private User modifiedByUser;
 
-    @OneToMany(mappedBy = "blog")
+    @OneToMany(mappedBy = "blog", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference(value = "blog-comment")
     private List<Comment> comments;
 
-    @OneToMany(mappedBy = "blog", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "blog", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference(value = "thumbnail-image-blog")
     private List<ThumbnailImage> thumbnailImages;
 }
