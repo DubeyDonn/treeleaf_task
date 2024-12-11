@@ -64,19 +64,29 @@ This project is a Spring Boot application that provides a blogging platform with
 
 ## API Endpoints
 
-### Authentication
+### Authentication (No Authentication Required)
 
 - `POST /user/register` - Register a new user
-- `POST /admin/register` - Register a new admin (Admin only)
 - `POST /login` - Authenticate a user and get a JWT
 
-### Blogs
+### Authentication (Admin Authentication Required)
+
+- `POST /admin/register` - Register a new admin
+
+### Blogs (Authentication Required)
 
 - `GET /blogs` - Get all blogs
 - `GET /blog/{id}` - Get a blog by ID
-- `POST /admin/blog` - Create a new blog (Admin only)
-- `PUT /admin/blog/{id}` - Update a blog (Admin only)
-- `DELETE /admin/blog/{id}` - Delete a blog (Admin only)
+
+### Blogs (Admin Authentication Required)
+
+- `POST /admin/blog` - Create a new blog
+- `PUT /admin/blog/{id}` - Update a blog
+- `DELETE /admin/blog/{id}` - Delete a blog
+
+### Comments (Authentication Required)
+
+- `POST /comment/{blogId}` - Create a new comment for a blog
 
 ## Postman Collection
 
