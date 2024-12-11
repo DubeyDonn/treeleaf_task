@@ -80,7 +80,7 @@ This project is a Spring Boot application that provides a blogging platform with
 
 ## Postman Collection
 
-You can find the Postman collection for testing the API endpoints [here](Treeleaf.postman_collection.json).
+You can find the Postman collection for testing the API endpoints [here](TreeLeaf.postman_collection.json).
 You can import this collection into Postman and start testing the API endpoints. REMEMBER to update the JWT token in the collection with the token you get after logging in. Also remember to update urls in the collection to match your local environment.
 
 ## Acknowledgements
