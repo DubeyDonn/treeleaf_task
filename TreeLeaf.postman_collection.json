@@ -1,0 +1,394 @@
+{
+	"info": {
+		"_postman_id": "3c4e2900-a5d9-4f44-8a36-98ffcccd13ea",
+		"name": "TreeLeaf",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28196575"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Add new User ( /user/register)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"user1\",\r\n    \"password\": \"user\",\r\n    \"role\": \"USER\",\r\n    \"name\": \"User\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new Admin ( /admin/register)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczMzgyNDQyMSwiZXhwIjoxNzMzODI2MjIxfQ.bCSxe7RFF8ArY-pbJ1EM4dUpItUCWOBLPHjC4RZjaH4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin\",\r\n    \"name\": \"Admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/admin/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"admin",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Login ( /login )",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"username\":\"user\",\r\n   \"password\": \"user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Login ( /login )",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"username\":\"admin\",\r\n   \"password\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Only Test",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNzMzODIwNzcyLCJleHAiOjE3MzM4MjI1NzJ9.WMKbL6zl7NH7BUa7HMZbK3dYqf_ppgtE8lusQVO1dt8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/auth/user/userProfile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"user",
+								"userProfile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Only Test",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuaXJhaiIsImlhdCI6MTczMzgyMDg1MiwiZXhwIjoxNzMzODIyNjUyfQ.E1Pp_N_tZJteqwNU9ac4wtN33jadJBrxpWNA9XjJlgw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/auth/admin/adminProfile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"admin",
+								"adminProfile"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "This contains the **API**s for the registration of new **user/admin** and login of **user/admin**."
+		},
+		{
+			"name": "Blog",
+			"item": [
+				{
+					"name": "Create Blog ( /admin/blog )",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Test",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "This is the test blog.",
+									"type": "text"
+								},
+								{
+									"key": "createdByUserId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "thumbnailImages",
+									"type": "file",
+									"src": "postman-cloud:///1efb6231-9994-4380-9cbe-d88a977f3588"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/blog",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"blog"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read All Blogs ( /blogs )",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/blogs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"blogs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read Blog By Id ( /blog/{blog_id} )",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/blog/21",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"blog",
+								"21"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Blog by Id ( /admin/blog/{blog_id} )",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Test",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "This is the test blog.",
+									"type": "text"
+								},
+								{
+									"key": "modifiedByUserId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "thumbnailImages",
+									"type": "file",
+									"src": [
+										"/C:/Users/Dell/Desktop/Fertimax 0  52 34 - Copy.jpg",
+										"/C:/Users/Dell/Downloads/Fertimax 0  52 34 - Copy.jpg"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/admin/blog/21",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"admin",
+								"blog",
+								"21"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Blog By Id ( /admin/blog/{blog_id} )",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/blog/22",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"blog",
+								"22"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "This contains the **API**s for the **CRUD** operations of blog post. Only **admin** can _**create**_, _**update**_ and _**delete**_ the blog post, whereas **anyone** can _**read**_ it."
+		},
+		{
+			"name": "Comment",
+			"item": [
+				{
+					"name": "Create Comment for a Blog Post ( /comment/{blog_id} )",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"This is a comment.\",\r\n    \"user\": {\r\n        \"id\": 1\r\n    },\r\n    \"blog\":{\r\n        \"id\":21\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/comment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"comment"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "This contains the **API** that lets the **user**/**admin** to comment on the blog post."
+		}
+	]
+}
